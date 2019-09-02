@@ -1,0 +1,10 @@
+## BASH move to change directory name and file name
+
+## mv to change directory name
+
+chilldev@DESKTOP-2MTSMFT:~/DigitalCrafts0819/week1/day1$ mv my-first-site/ wsl-blog-post/    
+
+## mv to change file name
+
+
+chilldev@DESKTOP-2MTSMFT:~/DigitalCrafts0819/week1/day1/wsl-blog-post$ mv aboutme.html wsl2blogpost.html

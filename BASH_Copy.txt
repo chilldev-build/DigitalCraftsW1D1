@@ -1,0 +1,55 @@
+BASH command notes
+-copy
+
+copy directory from chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$
+    to
+    \\wsl$\Ubuntu-18.04\home\chilldev\DigitalCrafts0819\week1\day1 
+
+cp web-projects/ //wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819/week1/day1
+
+## tried to copy with no luck.
+
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ cp web-projects/ //wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819/week1/day1
+cp: -r not specified; omitting directory 'web-projects/'
+
+## was able to copy one level up
+
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ cp -avr my-first-site/ /mntcp: cannot create directory '/mnt/my-first-site': Permission denied
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ cp -avr my-first-site/ ../
+'my-first-site/' -> '../my-first-site'
+'my-first-site/aboutme.html' -> '../my-first-site/aboutme.html'
+'my-first-site/scripts' -> '../my-first-site/scripts'
+'my-first-site/images' -> '../my-first-site/images'
+'my-first-site/images/20190806-chill-array.png' -> '../my-first-site/images/20190806-chill-array.png'
+'my-first-site/images/20190806-chill-array.jpg' -> '../my-first-site/images/20190806-chill-array.jpg'
+'my-first-site/images/20190806-chill-array2.png' -> '../my-first-site/images/20190806-chill-array2.png'
+'my-first-site/styles' -> '../my-first-site/styles'
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ ls
+my-first-site
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ cd my-first-site/
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects/my-first-site$ ls
+aboutme.html  images  scripts  styles
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects/my-first-site$ cd ..
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ ls
+my-first-site
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ cd ..
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ ls
+'Custom Office Templates'   desktop.ini   my-first-site   style-file.txt   web-projects
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ cd web-projects/
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents/web-projects$ cd ..
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ mv my-first-site/ /wsl$
+mv: cannot create directory '/wsl$': Permission denied
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ mv my-first-site/ //wsl$
+mv: cannot create directory '//wsl$': Permission denied
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ mv my-first-site/ //wsl$/Ubuntu-18.04/home/chilldev/
+mv: cannot move 'my-first-site/' to '//wsl$/Ubuntu-18.04/home/chilldev/': No such file or directory
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ rsync -av my-first-site/ /wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819
+sending incremental file list
+rsync: mkdir "/wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819" failed: No such file or directory (2)
+rsync error: error in file IO (code 11) at main.c(675) [Receiver=3.1.2]
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ rsync -av my-first-site/ //wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819
+sending incremental file list
+rsync: mkdir "//wsl$/Ubuntu-18.04/home/chilldev/DigitalCrafts0819" failed: No such file or directory (2)
+rsync error: error in file IO (code 11) at main.c(675) [Receiver=3.1.2]
+chilldev@DESKTOP-2MTSMFT:/mnt/c/Users/chris/OneDrive/Documents$ 
+
